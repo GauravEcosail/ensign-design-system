@@ -1,0 +1,26 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #101216; }
+button { font: inherit; cursor: pointer; }
+input, select { font: inherit; }
+table { border-collapse: collapse; width: 100%; }
+h1, h2, h3, h4, p { margin: 0; }
+
+/* ---- Switcher chrome (not part of any design system) ---- */
+.switcher {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 4px;
+  background: #101216; color: #9aa3af;
+  padding: 10px 16px; border-bottom: 1px solid #23262d;
+}
+.switcher-brand {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #e5e7eb; margin-right: 16px;
+}
+.switcher button {
+  background: transparent; border: 1px solid transparent; color: #9aa3af;
+  font-size: 13px; padding: 6px 14px; border-radius: 6px;
+}
+.switcher button:hover { color: #e5e7eb; }
+.switcher button.active { background: #1e2229; color: #fff; border-color: #2e333c; }
+.switcher .num { opacity: 0.5; margin-right: 6px; font-size: 11px; }
