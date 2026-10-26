@@ -1,5 +1,6 @@
 import './themes.css'
 import './showcase.css'
+import './kernel.css'
 import { ShowcaseCtx } from './bits.jsx'
 import { ThemeSection, ColorSection, TypographySection, IconsSection } from './Foundations.jsx'
 import { ButtonsSection, InputsSection, NavigationSection, CardsSection } from './Controls.jsx'
