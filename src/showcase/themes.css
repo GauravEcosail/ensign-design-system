@@ -18,9 +18,15 @@
   --ds-chart-1: #2a78d6;
   --ds-chart-2: #eb6834;
   --ds-chart-3: #1baf7a;
-  --ds-gray-50: #f8f5ec; --ds-gray-100: #f0ecdf; --ds-gray-200: #e5dfce;
-  --ds-gray-300: #d0c8b0; --ds-gray-400: #a89f85; --ds-gray-500: #7d7663;
-  --ds-gray-600: #57534a; --ds-gray-700: #3d3f42; --ds-gray-800: #1e2f42;
+  --ds-gray-50: #f8f5ec;
+  --ds-gray-100: #f0ecdf;
+  --ds-gray-200: #e5dfce;
+  --ds-gray-300: #d0c8b0;
+  --ds-gray-400: #a89f85;
+  --ds-gray-500: #7d7663;
+  --ds-gray-600: #57534a;
+  --ds-gray-700: #3d3f42;
+  --ds-gray-800: #1e2f42;
   --ds-gray-900: #12263a;
 }
 .ds.dark {
@@ -31,76 +37,144 @@
 
 .theme-ensign.light {
   color-scheme: light;
-  --ds-bg: #f8f5ec; --ds-surface: #fffdf7; --ds-surface-2: #faf7ee; --ds-surface-3: #f0ecdf;
+  --ds-bg: #f8f5ec;
+  --ds-surface: #fffdf7;
+  --ds-surface-2: #faf7ee;
+  --ds-surface-3: #f0ecdf;
   --ds-overlay: rgba(18, 38, 58, 0.5);
-  --ds-text: #12263a; --ds-text-2: #43596e; --ds-text-3: #8391a0; --ds-text-disabled: #b8c0c9;
-  --ds-border: #e2dcc9; --ds-divider: #ede8d9;
-  --ds-primary: #1b3a5c; --ds-primary-hover: #142d49; --ds-on-primary: #fffdf7; --ds-primary-soft: #e7edf3;
-  --ds-secondary: #43596e; --ds-accent: #1668b0;
-  --ds-success: #12996a; --ds-success-soft: #e7f5ef;
-  --ds-warning: #9a6700; --ds-warning-soft: #fbf0d9;
-  --ds-error: #b3382e; --ds-error-soft: #faeae8;
-  --ds-info: #2a78d6; --ds-info-soft: #e9f1fb;
-  --ds-focus: rgba(22, 104, 176, 0.35); --ds-hover: rgba(18, 38, 58, 0.045);
-  --ds-selected: #e8f1fa; --ds-disabled-bg: #f0ecdf;
+  --ds-text: #12263a;
+  --ds-text-2: #43596e;
+  --ds-text-3: #8391a0;
+  --ds-text-disabled: #b8c0c9;
+  --ds-border: #e2dcc9;
+  --ds-divider: #ede8d9;
+  --ds-primary: #1b3a5c;
+  --ds-primary-hover: #142d49;
+  --ds-on-primary: #fffdf7;
+  --ds-primary-soft: #e7edf3;
+  --ds-secondary: #43596e;
+  --ds-accent: #1668b0;
+  --ds-success: #12996a;
+  --ds-success-soft: #e7f5ef;
+  --ds-warning: #9a6700;
+  --ds-warning-soft: #fbf0d9;
+  --ds-error: #b3382e;
+  --ds-error-soft: #faeae8;
+  --ds-info: #2a78d6;
+  --ds-info-soft: #e9f1fb;
+  --ds-focus: rgba(22, 104, 176, 0.35);
+  --ds-hover: rgba(18, 38, 58, 0.045);
+  --ds-selected: #e8f1fa;
+  --ds-disabled-bg: #f0ecdf;
   --ds-chart-grid: #eae5d4;
-  --ds-shadow-sm: 0 1px 2px rgba(18,38,58,0.06);
-  --ds-shadow-md: 0 1px 3px rgba(18,38,58,0.06), 0 4px 14px rgba(18,38,58,0.08);
-  --ds-shadow-lg: 0 4px 8px rgba(18,38,58,0.08), 0 12px 28px rgba(18,38,58,0.12);
-  --ds-shadow-floating: 0 8px 16px rgba(18,38,58,0.10), 0 20px 44px rgba(18,38,58,0.16);
-  --ds-shadow-modal: 0 12px 24px rgba(18,38,58,0.16), 0 32px 72px rgba(18,38,58,0.26);
+  --ds-shadow-sm: 0 1px 2px rgba(18, 38, 58, 0.06);
+  --ds-shadow-md: 0 1px 3px rgba(18, 38, 58, 0.06), 0 4px 14px rgba(18, 38, 58, 0.08);
+  --ds-shadow-lg: 0 4px 8px rgba(18, 38, 58, 0.08), 0 12px 28px rgba(18, 38, 58, 0.12);
+  --ds-shadow-floating: 0 8px 16px rgba(18, 38, 58, 0.1), 0 20px 44px rgba(18, 38, 58, 0.16);
+  --ds-shadow-modal: 0 12px 24px rgba(18, 38, 58, 0.16), 0 32px 72px rgba(18, 38, 58, 0.26);
   --ds-grad-brand: linear-gradient(135deg, #0b1f33 0%, #1668b0 100%);
   --ds-grad-accent: linear-gradient(135deg, #2a78d6 0%, #12996a 100%);
-  --ds-grad-wash: linear-gradient(180deg, #edf2f6 0%, rgba(248,245,236,0) 70%);
+  --ds-grad-wash: linear-gradient(180deg, #edf2f6 0%, rgba(248, 245, 236, 0) 70%);
 }
 .theme-ensign.dark {
   color-scheme: dark;
-  --ds-bg: #0c1a28; --ds-surface: #122334; --ds-surface-2: #16293c; --ds-surface-3: #1c3145;
+  --ds-bg: #0c1a28;
+  --ds-surface: #122334;
+  --ds-surface-2: #16293c;
+  --ds-surface-3: #1c3145;
   --ds-overlay: rgba(2, 8, 14, 0.65);
-  --ds-text: #f2ecdd; --ds-text-2: #b3bfc4; --ds-text-3: #71828f; --ds-text-disabled: #455663;
-  --ds-border: #24384c; --ds-divider: #1a2c3e;
-  --ds-primary: #f2ecdd; --ds-primary-hover: #ffffff; --ds-on-primary: #12263a; --ds-primary-soft: rgba(242,236,221,0.10);
-  --ds-secondary: #b3bfc4; --ds-accent: #4b9de0;
-  --ds-success: #2fae83; --ds-success-soft: rgba(47,174,131,0.14);
-  --ds-warning: #d9a83f; --ds-warning-soft: rgba(217,168,63,0.14);
-  --ds-error: #e0685e; --ds-error-soft: rgba(224,104,94,0.14);
-  --ds-info: #7fa6d4; --ds-info-soft: rgba(127,166,212,0.14);
-  --ds-focus: rgba(75, 157, 224, 0.45); --ds-hover: rgba(242,236,221,0.05);
-  --ds-selected: rgba(75, 157, 224, 0.15); --ds-disabled-bg: #16293c;
+  --ds-text: #f2ecdd;
+  --ds-text-2: #b3bfc4;
+  --ds-text-3: #71828f;
+  --ds-text-disabled: #455663;
+  --ds-border: #24384c;
+  --ds-divider: #1a2c3e;
+  --ds-primary: #f2ecdd;
+  --ds-primary-hover: #ffffff;
+  --ds-on-primary: #12263a;
+  --ds-primary-soft: rgba(242, 236, 221, 0.1);
+  --ds-secondary: #b3bfc4;
+  --ds-accent: #4b9de0;
+  --ds-success: #2fae83;
+  --ds-success-soft: rgba(47, 174, 131, 0.14);
+  --ds-warning: #d9a83f;
+  --ds-warning-soft: rgba(217, 168, 63, 0.14);
+  --ds-error: #e0685e;
+  --ds-error-soft: rgba(224, 104, 94, 0.14);
+  --ds-info: #7fa6d4;
+  --ds-info-soft: rgba(127, 166, 212, 0.14);
+  --ds-focus: rgba(75, 157, 224, 0.45);
+  --ds-hover: rgba(242, 236, 221, 0.05);
+  --ds-selected: rgba(75, 157, 224, 0.15);
+  --ds-disabled-bg: #16293c;
   --ds-chart-grid: #1e3346;
-  --ds-shadow-sm: 0 1px 2px rgba(0,0,0,0.35);
-  --ds-shadow-md: 0 2px 4px rgba(0,0,0,0.35), 0 6px 20px rgba(0,0,0,0.4);
-  --ds-shadow-lg: 0 4px 8px rgba(0,0,0,0.4), 0 12px 32px rgba(0,0,0,0.45);
-  --ds-shadow-floating: 0 8px 16px rgba(0,0,0,0.45), 0 20px 48px rgba(0,0,0,0.55);
-  --ds-shadow-modal: 0 12px 24px rgba(0,0,0,0.55), 0 32px 80px rgba(0,0,0,0.65);
+  --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --ds-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.35), 0 6px 20px rgba(0, 0, 0, 0.4);
+  --ds-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.45);
+  --ds-shadow-floating: 0 8px 16px rgba(0, 0, 0, 0.45), 0 20px 48px rgba(0, 0, 0, 0.55);
+  --ds-shadow-modal: 0 12px 24px rgba(0, 0, 0, 0.55), 0 32px 80px rgba(0, 0, 0, 0.65);
   --ds-grad-brand: linear-gradient(135deg, #0c1a28 0%, #1b4f86 100%);
   --ds-grad-accent: linear-gradient(135deg, #4b9de0 0%, #2fae83 100%);
-  --ds-grad-wash: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(75,157,224,0.10), rgba(12,26,40,0) 70%);
+  --ds-grad-wash: radial-gradient(
+    ellipse 80% 60% at 50% -10%,
+    rgba(75, 157, 224, 0.1),
+    rgba(12, 26, 40, 0) 70%
+  );
 }
 
 /* Ensign signature: signage-style uppercase controls, gradient logo
    mark, ocean tricolor livery stripe under the page title, accent
    inset stripe on the active nav item. */
 .theme-ensign .ds-btn {
-  text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  font-size: 12px;
 }
-.theme-ensign .ds-btn.lg { font-size: 13px; }
-.theme-ensign .ds-btn.sm { font-size: 11px; }
-.theme-ensign .ds-tab, .theme-ensign .ds-pill, .theme-ensign .ds-seg button {
-  text-transform: uppercase; letter-spacing: 0.05em; font-size: 11.5px; font-weight: 600;
+.theme-ensign .ds-btn.lg {
+  font-size: 13px;
 }
-.theme-ensign .ds-logo-mark { background: var(--ds-grad-accent); color: #fff; }
-.theme-ensign .sc-hero h1 { text-transform: uppercase; letter-spacing: 0.01em; font-weight: 800; }
+.theme-ensign .ds-btn.sm {
+  font-size: 11px;
+}
+.theme-ensign .ds-tab,
+.theme-ensign .ds-pill,
+.theme-ensign .ds-seg button {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.theme-ensign .ds-logo-mark {
+  background: var(--ds-grad-accent);
+  color: #fff;
+}
+.theme-ensign .sc-hero h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-weight: 800;
+}
 .theme-ensign .sc-hero h1::after {
-  content: ''; display: block; width: 120px; height: 8px; margin-top: 12px;
+  content: '';
+  display: block;
+  width: 120px;
+  height: 8px;
+  margin-top: 12px;
   background: linear-gradient(90deg, #12263a 0 33%, #1668b0 33% 66%, #12996a 66% 100%);
 }
 .theme-ensign.dark .sc-hero h1::after {
   background: linear-gradient(90deg, #f2ecdd 0 33%, #4b9de0 33% 66%, #2fae83 66% 100%);
 }
 .theme-ensign .ds-nav-item.active {
-  background: transparent; box-shadow: inset 3px 0 0 #1668b0; border-radius: 0;
-  color: var(--ds-text); font-weight: 700;
+  background: transparent;
+  box-shadow: inset 3px 0 0 #1668b0;
+  border-radius: 0;
+  color: var(--ds-text);
+  font-weight: 700;
 }
-.theme-ensign.dark .ds-nav-item.active { box-shadow: inset 3px 0 0 #4b9de0; }
-.theme-ensign .ds-check input:checked::after { border-color: #fff; }
+.theme-ensign.dark .ds-nav-item.active {
+  box-shadow: inset 3px 0 0 #4b9de0;
+}
+.theme-ensign .ds-check input:checked::after {
+  border-color: #fff;
+}

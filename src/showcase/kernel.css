@@ -1,0 +1,2091 @@
+/* Small kernel-owned additions on top of the vendored Ensign CSS.
+   Only Ensign tokens may be used here. */
+
+/* CVMS light-theme tuning: the stock Ensign light neutrals, nudged a few
+   points darker (same warm hue). Candidate to propose upstream. */
+.theme-ensign.light {
+  --ds-bg: #f1ecdf;
+  --ds-surface: #faf7ee;
+  --ds-surface-2: #f3efe2;
+  --ds-surface-3: #e9e4d3;
+  --ds-border: #d8d1bb;
+  --ds-divider: #e3ddcb;
+}
+
+/* Page title with the Ensign ocean tricolor livery stripe */
+.dsx-page-title h1 {
+  font-family: var(--ds-font-display);
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.dsx-page-title h1::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 8px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, #12263a 0 33%, #1668b0 33% 66%, #12996a 66% 100%);
+}
+
+.dark .dsx-page-title h1::after {
+  background: linear-gradient(90deg, #f2ecdd 0 33%, #4b9de0 33% 66%, #2fae83 66% 100%);
+}
+
+.dsx-page-title p {
+  margin-top: 10px;
+  color: var(--ds-text-2);
+  font-size: 13px;
+  max-width: 60ch;
+}
+
+.dsx-page-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dsx-page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* PasswordInput: a plain .ds-input with a show/hide button sitting inside
+   its right edge. Ensign's .ds-input-wrap assumes a leading icon, so this
+   is its own wrapper — only the trailing padding changes. */
+.dsx-password {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dsx-password .ds-input {
+  padding-right: 34px;
+}
+
+.dsx-password-toggle {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: var(--ds-radius-sm);
+  color: var(--ds-text-3);
+  cursor: pointer;
+}
+
+.dsx-password-toggle:hover {
+  color: var(--ds-text);
+  background: var(--ds-hover);
+}
+
+.dsx-password-toggle:disabled {
+  color: var(--ds-text-disabled);
+  background: none;
+  cursor: not-allowed;
+}
+
+/* Form Debugger (dev-only, gated by FormDebugProvider) — floating inspector */
+.dsx-formdebug {
+  position: fixed;
+  left: 14px; /* bottom-left: clear of submit buttons, which live bottom-right */
+  bottom: 14px;
+  z-index: 200; /* above the modal overlay (100) so dialogs stay inspectable */
+  width: 320px;
+  max-height: min(60vh, 520px);
+  display: flex;
+  flex-direction: column;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-floating);
+  font-size: 12px;
+  color: var(--ds-text-2);
+}
+
+.dsx-formdebug-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--ds-divider);
+  font-weight: 700;
+  color: var(--ds-text);
+}
+
+.dsx-formdebug-head .spacer {
+  flex: 1;
+}
+
+.dsx-formdebug-btn {
+  display: grid;
+  place-items: center;
+  padding: 2px;
+  border: none;
+  background: none;
+  color: var(--ds-text-3);
+  cursor: pointer;
+  border-radius: var(--ds-radius-sm);
+}
+
+.dsx-formdebug-btn:hover {
+  background: var(--ds-hover);
+  color: var(--ds-text);
+}
+
+.dsx-formdebug-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--ds-divider);
+}
+
+.dsx-formdebug-chip {
+  font: inherit;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--ds-radius-pill);
+  border: 1px solid var(--ds-border);
+  background: var(--ds-surface-2);
+  color: var(--ds-text-2);
+  cursor: pointer;
+}
+
+.dsx-formdebug-chip.active {
+  background: var(--ds-primary-soft);
+  border-color: var(--ds-accent);
+  color: var(--ds-accent);
+}
+
+.dsx-formdebug-body {
+  overflow: auto;
+  padding: 8px 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.dsx-formdebug-sec b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ds-text-3);
+}
+
+.dsx-formdebug-sec pre {
+  margin: 0;
+  padding: 8px;
+  background: var(--ds-surface-3);
+  border-radius: var(--ds-radius-md);
+  overflow: auto;
+  font-size: 11px;
+  line-height: 1.5;
+  font-family: var(--ds-font-mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.dsx-formdebug-pill {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--ds-radius-pill);
+  border: 1px solid var(--ds-border);
+  background: var(--ds-surface);
+  color: var(--ds-text-2);
+  box-shadow: var(--ds-shadow-md);
+  cursor: pointer;
+}
+
+/* StatusText: label (optionally with an icon) in a tone colour, no pill (Badge's type scale,
+   Ensign tone tokens). Untoned it reads as secondary text. */
+.dsx-status-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ds-text-2);
+  white-space: nowrap;
+}
+.dsx-status-text .dsx-status-icon {
+  display: inline-flex;
+}
+.dsx-status-text.success {
+  color: var(--ds-success);
+}
+.dsx-status-text.warning {
+  color: var(--ds-warning);
+}
+.dsx-status-text.error {
+  color: var(--ds-error);
+}
+.dsx-status-text.info {
+  color: var(--ds-info);
+}
+.dsx-status-text.accent {
+  color: var(--ds-accent);
+}
+
+/* Required-field mark after a Field's label (Field `required`). */
+.dsx-required {
+  color: var(--ds-error);
+  margin-left: 3px;
+}
+
+/* FieldValue: a shown (not edited) value in a Field — the input's box, without its
+   border or fill, so it lines up with the inputs beside it. */
+.ds-input.dsx-field-value {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-color: transparent;
+  padding-left: 0;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: default;
+}
+.ds-input.dsx-field-value.empty {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ds-text-3);
+}
+
+/* Flex spacer for toolbars (the vendored `.grow` is scoped to `.ds-topnav`) */
+.dsx-spacer {
+  flex: 1;
+}
+
+/* TextField `trailing` slot: input + addon (generate/copy button) in a row */
+.dsx-input-row {
+  display: flex;
+  gap: 6px;
+}
+
+.dsx-input-row .ds-input {
+  flex: 1;
+}
+
+/* ErrorBoundary fallback: space the retry button off the message */
+.dsx-boundary-retry {
+  margin-top: 10px;
+}
+
+/* DataTable: loading/error body padding, toolbar title, bounded search box */
+.dsx-table-state {
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.dsx-table-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ds-text);
+}
+
+.ds-table-toolbar .dsx-table-search {
+  width: 200px;
+}
+
+/* DataTable toolbar filters (Select/Input passed via `toolbar`): inline, not full-width */
+.ds-table-toolbar .dsx-table-filter {
+  width: auto;
+  max-width: 260px;
+}
+
+.ds-page-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.ds-page-btn:disabled:hover {
+  background: transparent;
+}
+
+/* --- Modal: the app dialog, not the showcase's ------------------------- */
+
+/* The vendored card is positioned for the showcase's `.sc-viewport` — absolute,
+   centred with a transform, and with no height budget at all. In the real app
+   the overlay centres it instead, so a long dialog just kept growing past both
+   edges of the screen and took its own close button off-screen with it. Here
+   the card is a column capped to the viewport, and the body is what scrolls. */
+.ds .dsx-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  /* The gutter is the cap: the card can grow to the overlay's content box and
+     no further, so there is always a strip of overlay above and below it. */
+  padding: 24px 16px;
+  background: var(--ds-overlay);
+}
+
+.ds .dsx-modal-overlay > .ds-modal {
+  position: static;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.ds .dsx-modal-overlay > .ds-modal > .ds-modal-head,
+.ds .dsx-modal-overlay > .ds-modal > .ds-modal-foot {
+  flex: none;
+}
+
+/* Two actions with real labels do not fit side by side on a phone; wrapping
+   stacks them right-aligned instead of pushing both past the card's edges. */
+.ds .dsx-modal-overlay > .ds-modal > .ds-modal-foot {
+  flex-wrap: wrap;
+}
+
+.ds .dsx-modal-overlay > .ds-modal > .ds-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  /* Reaching the end of the dialog must not start scrolling the page behind it. */
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 639.98px) {
+  .ds .dsx-modal-overlay {
+    padding: 12px;
+  }
+}
+
+/* Modal size variants beyond the vendored md (420px) and lg (`wide`, 560px) */
+.ds-modal.dsx-modal-sm {
+  width: min(340px, 88%);
+}
+
+.ds-modal.dsx-modal-xl {
+  width: min(760px, 94%);
+}
+
+/* ============================================================
+   Visual polish overrides (kernel-owned, Ensign tokens only).
+   Softer focus, dressed-up selects, consistent micro-transitions.
+   Candidates to propose upstream in the design-system repo.
+   ============================================================ */
+
+/* --- Focus: calmer ring, one geometry everywhere ---------------------- */
+
+/* Lower-alpha focus token softens every ring in both themes at once
+   (vendored: 0.35 light / 0.45 dark). */
+.theme-ensign.light {
+  --ds-focus: rgba(22, 104, 176, 0.18);
+}
+
+.theme-ensign.dark {
+  --ds-focus: rgba(75, 157, 224, 0.28);
+}
+
+/* 2px ring instead of the vendored 3px — present, not shouting. */
+.ds :focus-visible {
+  box-shadow: 0 0 0 2px var(--ds-focus);
+}
+
+.ds .ds-input:focus,
+.ds .ds-select:focus,
+.ds .ds-textarea:focus,
+.ds .ds-input.focus {
+  box-shadow: 0 0 0 2px var(--ds-focus);
+}
+
+.ds .ds-input.error:focus {
+  box-shadow: 0 0 0 2px var(--ds-error-soft);
+}
+
+/* The vendored global focus rule forces radius-sm onto every focused
+   element, visibly squaring md-radius controls on keyboard focus. Keep each
+   control's own shape. */
+.ds .ds-btn:focus-visible,
+.ds .ds-iconbtn:focus-visible,
+.ds .ds-input:focus-visible,
+.ds .ds-select:focus-visible,
+.ds .ds-textarea:focus-visible,
+.ds .ds-nav-item:focus-visible {
+  border-radius: var(--ds-radius-md);
+}
+
+/* Keyboard focus mirrors hover on flat list items, so tabbing reads the
+   same as mousing. */
+.ds .ds-menu-item:focus-visible,
+.ds .ds-nav-item:focus-visible,
+.ds .ds-iconbtn:focus-visible,
+.ds .ds-tab:focus-visible {
+  background: var(--ds-hover);
+}
+
+/* --- Selects: custom chevron, hover affordance, real dropdown colors --- */
+
+/* Chevron stroke colors are --ds-text-3 baked into the data URI (URLs can't
+   read tokens): #8391a0 light, #71828f dark. */
+.ds .ds-select {
+  appearance: none;
+  padding-right: 30px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238391a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 9px center;
+  background-size: 14px;
+}
+
+.ds.dark .ds-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371828f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.ds .ds-select:disabled {
+  cursor: not-allowed;
+}
+
+/* The dropdown panel itself is OS-rendered, but Chromium honours these —
+   keeps the option list on-theme instead of white-on-white in dark mode. */
+.ds .ds-select option {
+  background: var(--ds-surface);
+  color: var(--ds-text);
+}
+
+/* --- Hover affordance on text controls (matches outline-button hover) --- */
+
+.ds .ds-input:hover:not(:focus):not(:disabled):not(.error),
+.ds .ds-select:hover:not(:focus):not(:disabled),
+.ds .ds-textarea:hover:not(:focus):not(:disabled) {
+  border-color: var(--ds-text-3);
+}
+
+/* --- Consistent micro-transitions (vendored buttons/inputs already have
+   them; these bring the rest of the interactive set in line) ------------ */
+
+.ds .ds-iconbtn,
+.ds .ds-nav-item,
+.ds .ds-menu-item,
+.ds .ds-tab,
+.ds .ds-page-btn,
+.ds .ds-table th .sort,
+.ds .ds-check input,
+.ds .ds-radio input,
+.ds .dsx-formdebug-btn,
+.ds .dsx-formdebug-chip {
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+/* Row hover in tables fades instead of snapping. */
+.ds .ds-table td {
+  transition: background-color 120ms ease;
+}
+
+/* --- Native checkboxes (role checklist, permission picker) ------------- */
+
+.ds input[type='checkbox'] {
+  accent-color: var(--ds-primary);
+  cursor: pointer;
+}
+
+/* --- DataTable: interactive rows (`onRowClick`) ------------------------- */
+
+.ds .ds-table tbody tr.dsx-row-clickable {
+  cursor: pointer;
+}
+
+.ds .ds-table tbody tr.dsx-row-clickable:focus-visible {
+  outline: 2px solid var(--ds-accent);
+  outline-offset: -2px;
+}
+
+/* --- Pagination: controls sit at the end of the row -------------------- */
+
+.ds .ds-pagination {
+  justify-content: flex-end;
+}
+
+/* --- Tables: the page scrolls, wide tables scroll sideways -------------- */
+
+/* Lists paginate, so the vendored 340px inner cap only hides rows behind a
+   second (invisible) scrollbar. Let the page scroll instead, and give the
+   sideways scroll of a wide table a slim on-theme scrollbar so mouse users
+   can see it and drag it (the web shell hides scrollbars everywhere else). */
+.ds .ds-table-scroll {
+  max-height: none;
+  /* Scrolling a wide table to its edge must not swipe the browser back a page. */
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-border) transparent;
+}
+
+.ds .ds-table-scroll::-webkit-scrollbar {
+  display: block;
+  width: 8px;
+  height: 8px;
+}
+
+.ds .ds-table-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ds .ds-table-scroll::-webkit-scrollbar-thumb {
+  background: var(--ds-border);
+  border-radius: var(--ds-radius-pill);
+  border: 2px solid var(--ds-surface);
+}
+
+.ds .ds-table-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--ds-text-3);
+}
+
+/* --- Select dropdown list ---------------------------------------------- */
+
+/* Legacy pickers honour only colours; spacing and states below apply in
+   browsers that support the customizable select (Chromium 135+). */
+.ds .ds-select option {
+  padding: 6px 9px;
+  font-size: 13px;
+}
+
+.ds .ds-select option:checked {
+  background: var(--ds-selected);
+  color: var(--ds-accent);
+  font-weight: 600;
+}
+
+@supports (appearance: base-select) {
+  .ds .ds-select,
+  .ds .ds-select::picker(select) {
+    appearance: base-select;
+  }
+
+  /* The kernel chevron (background-image above) stays; drop the UA icon. */
+  .ds .ds-select::picker-icon {
+    display: none;
+  }
+
+  .ds .ds-select:open {
+    border-color: var(--ds-accent);
+    box-shadow: 0 0 0 2px var(--ds-focus);
+  }
+
+  .ds .ds-select::picker(select) {
+    margin-top: 4px;
+    padding: 4px;
+    border: 1px solid var(--ds-border);
+    border-radius: var(--ds-radius-md);
+    background: var(--ds-surface);
+    color: var(--ds-text);
+    box-shadow: var(--ds-shadow-floating);
+  }
+
+  .ds .ds-select option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 9px;
+    border-radius: var(--ds-radius-sm);
+    background: transparent;
+    color: var(--ds-text);
+    cursor: pointer;
+    transition:
+      background-color 120ms ease,
+      color 120ms ease;
+  }
+
+  .ds .ds-select option:hover,
+  .ds .ds-select option:focus-visible {
+    background: var(--ds-hover);
+    outline: none;
+    box-shadow: none;
+  }
+
+  .ds .ds-select option:checked {
+    background: var(--ds-selected);
+    color: var(--ds-accent);
+    font-weight: 600;
+  }
+
+  .ds .ds-select option::checkmark {
+    order: 2;
+    margin-left: auto;
+    color: var(--ds-accent);
+  }
+}
+
+/* --- NavCard: launcher tile for hub pages (e.g. Masters) ----------------
+   A tinted title strip over the body, so a grid of tiles reads as a labelled
+   set rather than a wall of paragraphs. The whole tile is one link. */
+
+.ds .dsx-navcard {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  font: inherit;
+  color: var(--ds-text);
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.ds .dsx-navcard:hover {
+  border-color: var(--ds-accent);
+  box-shadow: var(--ds-shadow-md);
+  transform: translateY(-1px);
+}
+
+.ds .dsx-navcard:focus-visible {
+  border-color: var(--ds-accent);
+  box-shadow: 0 0 0 2px var(--ds-focus);
+  border-radius: var(--ds-radius-lg);
+}
+
+.ds .dsx-navcard-title {
+  display: block;
+  padding: 11px 14px;
+  background: var(--ds-primary-soft);
+  color: var(--ds-accent);
+  border-bottom: 1px solid var(--ds-border);
+  font-family: var(--ds-font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+/* Progress mark before the title: how filled-in the destination is. */
+.ds .dsx-navcard-progress {
+  display: inline-flex;
+  vertical-align: -3px;
+  margin-right: 7px;
+}
+.ds .dsx-navcard-progress.complete {
+  color: var(--ds-success);
+}
+.ds .dsx-navcard-progress.partial {
+  color: var(--ds-warning);
+}
+.ds .dsx-navcard-progress.empty {
+  color: var(--ds-text-3);
+}
+
+/* The figure line: mono so counts across a grid of tiles line up. */
+.ds .dsx-navcard-stat {
+  display: block;
+  padding: 13px 14px 0;
+  font-family: var(--ds-font-mono);
+  font-size: 15px;
+  color: var(--ds-text);
+}
+
+.ds .dsx-navcard-desc {
+  display: block;
+  padding: 3px 14px 13px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ds-text-3);
+}
+
+/* No figure line: the description carries the body's top padding itself. */
+.ds .dsx-navcard-body > .dsx-navcard-desc:first-child {
+  padding-top: 13px;
+}
+
+.ds .dsx-navcard-arrow {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  color: var(--ds-accent);
+  transition: transform 120ms ease;
+}
+
+.ds .dsx-navcard:hover .dsx-navcard-arrow {
+  transform: translateX(2px);
+}
+
+/* Tile grid for hub pages: as many columns as fit, never a single stretched card. */
+.ds .dsx-navcard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.ds a.dsx-navcard,
+.ds a.dsx-navcard:hover {
+  text-decoration: none;
+  color: var(--ds-text);
+}
+
+/* --- Combobox: a select you can type into (list is portalled) ----------- */
+
+.ds .dsx-combobox {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.ds .dsx-combobox-input {
+  padding-right: 30px;
+  cursor: text;
+  text-overflow: ellipsis;
+}
+
+.ds .dsx-combobox-chevron {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ds-text-3);
+  pointer-events: none;
+  transition: transform 120ms ease;
+}
+
+.ds .dsx-combobox-chevron.open {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.ds .dsx-combobox-pop {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-border) transparent;
+}
+
+.ds .dsx-combobox-pop::-webkit-scrollbar {
+  display: block;
+  width: 8px;
+}
+
+.ds .dsx-combobox-pop::-webkit-scrollbar-thumb {
+  background: var(--ds-border);
+  border-radius: var(--ds-radius-pill);
+  border: 2px solid var(--ds-surface);
+}
+
+.ds .dsx-combobox-option-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds .dsx-combobox-empty {
+  padding: 8px 9px;
+  font-size: 12.5px;
+  color: var(--ds-text-3);
+}
+
+/* Toolbar filters: predictable width (an input has no content-fitted size). */
+.ds .ds-table-toolbar .dsx-combobox.dsx-table-filter {
+  width: 200px;
+}
+
+/* --- Layout primitives (Stack / Cols / Split — see layout.tsx) ---------- */
+/* Breakpoint names come from breakpoints.css, inlined at build time by
+   postcss-custom-media (configured in apps/web/postcss.config.js). */
+
+/* minmax(0, 1fr), not the implicit `auto` track: an auto track is as wide as
+   its widest child's min-content, so one nowrap table or unbreakable hash made
+   every sibling that wide too and pushed the whole stack out of its container
+   (the Files details dialog scrolled sideways). A zero minimum keeps the track
+   at the container width and leaves wide children to scroll or wrap themselves. */
+.dsx-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Inline code is where the unbreakable strings live — hashes, ids, paths. A
+   64-character SHA-256 has no break opportunity, so in a narrow column it ran
+   straight out of its cell and gave the container a sideways scrollbar. It may
+   break anywhere instead; `pre` blocks keep their own wrapping rules. */
+.ds :not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
+/* Columns never shrink below --dsx-cols-min; the min(…, 100%) guard keeps a
+   single column from overflowing a container narrower than the minimum. */
+.dsx-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--dsx-cols-min, 180px), 100%), 1fr));
+}
+
+.dsx-cols.dsx-align-start {
+  align-items: start;
+}
+.dsx-cols.dsx-align-center {
+  align-items: center;
+}
+.dsx-cols.dsx-align-end {
+  align-items: end;
+}
+
+/* Mobile-first: stacked in source order; side by side from desktop up. */
+.dsx-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .dsx-split-2-1 {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+  .dsx-split-1-1 {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .dsx-split-1-2 {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+}
+
+.dsx-gap-sm {
+  gap: 8px;
+}
+.dsx-gap-md {
+  gap: 12px;
+}
+.dsx-gap-lg {
+  gap: 16px;
+}
+
+/* --- Drawer: left-anchored variant (see Drawer in index.tsx) ------------ */
+/* The vendored .ds-drawer anchors right; navigation slides in from the left,
+   so the edge border swaps sides with it. */
+.ds-drawer.dsx-drawer-left {
+  left: 0;
+  right: auto;
+  border-left: none;
+  border-right: 1px solid var(--ds-border);
+}
+
+/* --- Rich text: rendered content (editor body and read-only view share it) --- */
+
+.ds .dsx-richtext {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ds-text);
+}
+
+.ds .dsx-richtext > *:first-child {
+  margin-top: 0;
+}
+
+.ds .dsx-richtext > *:last-child {
+  margin-bottom: 0;
+}
+
+.ds .dsx-richtext p,
+.ds .dsx-richtext div {
+  margin: 0 0 8px;
+}
+
+.ds .dsx-richtext h2 {
+  margin: 14px 0 6px;
+  font-family: var(--ds-font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ds .dsx-richtext h3,
+.ds .dsx-richtext h4 {
+  margin: 12px 0 5px;
+  font-family: var(--ds-font-display);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ds .dsx-richtext ul,
+.ds .dsx-richtext ol {
+  margin: 0 0 8px;
+  padding-left: 22px;
+}
+
+.ds .dsx-richtext li {
+  margin-bottom: 3px;
+}
+
+.ds .dsx-richtext a {
+  color: var(--ds-accent);
+  text-decoration: underline;
+}
+
+.ds .dsx-richtext blockquote {
+  margin: 0 0 8px;
+  padding: 2px 0 2px 12px;
+  border-left: 3px solid var(--ds-border);
+  color: var(--ds-text-2);
+}
+
+.ds .dsx-richtext code {
+  padding: 1px 5px;
+  border-radius: var(--ds-radius-sm);
+  background: var(--ds-surface-3);
+  font-family: var(--ds-font-mono);
+  font-size: 12px;
+}
+
+.ds .dsx-richtext pre {
+  margin: 0 0 8px;
+  padding: 9px 11px;
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-surface-3);
+  overflow-x: auto;
+  font-family: var(--ds-font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* --- Rich text: the editor shell (borrows the ds-input border language) --- */
+
+.ds .dsx-rte {
+  width: 100%;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-surface);
+  overflow: hidden;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.ds .dsx-rte:hover:not(.focus):not(.error):not(.disabled) {
+  border-color: var(--ds-text-3);
+}
+
+.ds .dsx-rte.focus {
+  border-color: var(--ds-accent);
+  box-shadow: 0 0 0 2px var(--ds-focus);
+}
+
+.ds .dsx-rte.error {
+  border-color: var(--ds-error);
+}
+
+.ds .dsx-rte.error.focus {
+  box-shadow: 0 0 0 2px var(--ds-error-soft);
+}
+
+.ds .dsx-rte.disabled {
+  background: var(--ds-disabled-bg);
+}
+
+/* .dsx-richtext sets its own colour on the body, so state it here too. */
+.ds .dsx-rte.disabled .dsx-rte-body {
+  color: var(--ds-text-disabled);
+  cursor: default;
+}
+
+.ds .dsx-rte-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 5px;
+  background: var(--ds-surface-2);
+  border-bottom: 1px solid var(--ds-divider);
+}
+
+.ds .dsx-rte-toolbar .ds-btn.active {
+  background: var(--ds-selected);
+  color: var(--ds-accent);
+}
+
+.ds .dsx-rte-sep {
+  width: 1px;
+  align-self: stretch;
+  margin: 3px 5px;
+  background: var(--ds-divider);
+}
+
+/* Link editor: a compact popover anchored under the toolbar, instead of a
+   browser prompt(). The wrapper is a zero-height positioning anchor, so
+   opening it never pushes the writing area down or spans the page. */
+.ds .dsx-rte-linkwrap {
+  position: relative;
+  height: 0;
+}
+
+.ds .dsx-rte-link {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: min(340px, calc(100% - 12px));
+  padding: 6px;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-floating);
+}
+
+.ds .dsx-rte-link .ds-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.ds .dsx-rte-body {
+  padding: 10px 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  outline: none;
+  cursor: text;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-border) transparent;
+}
+
+/* `:empty` misses the <br> the browser leaves behind, so React drives this. */
+.ds .dsx-rte-body[data-empty='true']::before {
+  content: attr(data-placeholder);
+  color: var(--ds-text-3);
+  pointer-events: none;
+}
+
+.ds .dsx-rte-count {
+  padding: 4px 10px;
+  border-top: 1px solid var(--ds-divider);
+  background: var(--ds-surface-2);
+  text-align: right;
+  font-family: var(--ds-font-mono);
+  font-size: 11px;
+  color: var(--ds-text-3);
+}
+
+.ds .dsx-rte-count.error {
+  color: var(--ds-error);
+}
+
+/* --- File upload ------------------------------------------------------- */
+
+/* The real input is driven by ref; the visible affordance is a button. */
+.dsx-file-input {
+  display: none;
+}
+
+/* Ensign's .ds-upload is authored for a div — reset the button UA styles. */
+.ds .dsx-upload {
+  width: 100%;
+  font: inherit;
+  background: transparent;
+  transition:
+    border-color 120ms ease,
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.ds .dsx-upload:disabled {
+  cursor: not-allowed;
+  background: var(--ds-disabled-bg);
+  color: var(--ds-text-disabled);
+  border-color: var(--ds-border);
+}
+
+/* Vendored `.ds-upload b` is accent-coloured; a disabled zone must not read
+   as the live call to action. */
+.ds .dsx-upload:disabled b,
+.ds .dsx-upload:disabled .dsx-upload-icon {
+  color: var(--ds-text-disabled);
+}
+
+.ds .dsx-upload.over {
+  border-style: solid;
+  border-color: var(--ds-accent);
+  background: var(--ds-primary-soft);
+  color: var(--ds-accent);
+}
+
+.ds .dsx-upload.error {
+  border-color: var(--ds-error);
+}
+
+.ds .dsx-upload:focus-visible {
+  border-color: var(--ds-accent);
+  box-shadow: 0 0 0 2px var(--ds-focus);
+}
+
+.ds .dsx-upload-icon {
+  display: grid;
+  place-items: center;
+  color: var(--ds-text-3);
+}
+
+.ds .dsx-upload.over .dsx-upload-icon {
+  color: var(--ds-accent);
+}
+
+.ds .dsx-upload-hint {
+  font-size: 11.5px;
+  color: var(--ds-text-3);
+}
+
+/* Compact: one row, for a modal or a sidebar panel. */
+.ds .dsx-upload.compact {
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 11px 14px;
+  gap: 8px;
+}
+
+.ds .dsx-upload.compact .dsx-upload-hint::before {
+  content: '· ';
+}
+
+/* --- Attachment list ---------------------------------------------------- */
+
+.ds .dsx-attach {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds .dsx-attach-under {
+  margin-top: 8px;
+}
+
+.ds .dsx-attach-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-surface-2);
+  font-size: 12.5px;
+}
+
+.ds .dsx-attach.compact .dsx-attach-item {
+  padding: 4px 8px;
+  background: transparent;
+}
+
+.ds .dsx-attach-icon {
+  display: grid;
+  place-items: center;
+  color: var(--ds-text-3);
+  flex: none;
+}
+
+.ds .dsx-attach-item.done .dsx-attach-icon {
+  color: var(--ds-success);
+}
+
+.ds .dsx-attach-item.error .dsx-attach-icon {
+  color: var(--ds-error);
+}
+
+.ds .dsx-attach-item.error {
+  border-color: var(--ds-error);
+}
+
+.ds .dsx-attach-main {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.ds .dsx-attach-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--ds-text);
+}
+
+.ds .dsx-attach-name a {
+  color: var(--ds-accent);
+  text-decoration: none;
+}
+
+.ds .dsx-attach-name a:hover {
+  text-decoration: underline;
+}
+
+.ds .dsx-attach-meta {
+  font-size: 11.5px;
+  color: var(--ds-text-3);
+}
+
+.ds .dsx-attach-meta.error {
+  color: var(--ds-error);
+}
+
+.ds .dsx-attach-progress {
+  display: block;
+  margin-top: 2px;
+}
+
+.ds .dsx-attach-progress > span {
+  display: block;
+  height: 100%;
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-accent);
+  transition: width 300ms;
+}
+
+/* --- Booleans and choices ----------------------------------------------- */
+
+/* Ensign styles the control; the label beside it must dim in step. */
+.ds .dsx-toggle-disabled {
+  color: var(--ds-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Ensign has no disabled state for the switch, so a disabled *on* switch
+   reads as a live accent control. Dim the track instead of recolouring it —
+   an off/on switch must still show which way it is set. */
+.ds .ds-switch input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ds .ds-check input:indeterminate {
+  border-color: var(--ds-accent);
+  background: var(--ds-accent);
+}
+
+.ds .ds-check input:indeterminate::after {
+  content: '';
+  width: 9px;
+  height: 2px;
+  background: var(--ds-on-primary);
+}
+
+.ds .dsx-radiogroup {
+  display: grid;
+  gap: 9px;
+}
+
+.ds .dsx-radiogroup.inline {
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: 18px;
+}
+
+/* A described option is two lines, so the dot aligns to the first one. */
+.ds .dsx-radiogroup .ds-radio {
+  align-items: flex-start;
+}
+
+.ds .dsx-radio-text {
+  display: grid;
+  gap: 2px;
+  line-height: 1.35;
+}
+
+.ds .dsx-radio-desc {
+  font-size: 12px;
+  color: var(--ds-text-3);
+}
+
+/* Switch/checkbox fields: the label is inline, so no stacked ds-label above. */
+.ds .dsx-boolean-field {
+  gap: 5px;
+}
+
+/* --- LoadingOverlay ----------------------------------------------------- */
+
+/* The vendored veil is white-on-overlay with no label; keep it on-theme.
+   `display: flex` replaces the vendored `place-items: center`, so the
+   centring has to be restated on both axes. */
+.ds .dsx-veil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: var(--ds-text);
+  background: color-mix(in srgb, var(--ds-surface) 72%, transparent);
+  backdrop-filter: blur(1px);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.ds .dsx-veil-label {
+  color: var(--ds-text-2);
+}
+
+/* --- Toasts ------------------------------------------------------------- */
+
+/* Top-right: the form debugger owns bottom-left and submit buttons the
+   bottom-right, so a toast there would land on the control just used.
+
+   The viewport is portalled to <body> and carries `.ds` itself to bring the
+   token scope with it — so this selector is `.ds.dsx-…`, one element, not a
+   descendant. It also neutralizes what `.ds` paints on a page root
+   (`background: var(--ds-bg)`, `min-height: 100vh`), which would otherwise
+   drop a full-height opaque column over the app. */
+.ds.dsx-toast-viewport {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 300; /* above the modal overlay (100) and the form debugger (200) */
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  pointer-events: none;
+  width: min(380px, calc(100vw - 28px));
+  min-height: 0;
+  background: transparent;
+}
+
+.ds .dsx-toast {
+  pointer-events: auto;
+  width: 100%;
+  align-items: flex-start;
+  padding: 10px 10px 10px 12px;
+  /* Anchors the countdown line; overflow keeps it inside the rounded corner. */
+  position: relative;
+  overflow: hidden;
+  animation: dsx-toast-in 160ms ease-out;
+}
+
+@keyframes dsx-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds .dsx-toast {
+    animation: none;
+  }
+}
+
+.ds .dsx-toast-icon {
+  display: grid;
+  place-items: center;
+  padding-top: 1px;
+  flex: none;
+}
+
+.ds .dsx-toast.success .dsx-toast-icon {
+  color: var(--ds-success);
+}
+
+.ds .dsx-toast.error .dsx-toast-icon {
+  color: var(--ds-error);
+}
+
+.ds .dsx-toast.warning .dsx-toast-icon {
+  color: var(--ds-warning);
+}
+
+.ds .dsx-toast.info .dsx-toast-icon {
+  color: var(--ds-info);
+}
+
+/* A left edge in the tone: readable at a glance, and colour is not the only
+   carrier — the icon differs per tone too. */
+.ds .dsx-toast.success {
+  border-left: 3px solid var(--ds-success);
+}
+
+.ds .dsx-toast.error {
+  border-left: 3px solid var(--ds-error);
+}
+
+.ds .dsx-toast.warning {
+  border-left: 3px solid var(--ds-warning);
+}
+
+.ds .dsx-toast.info {
+  border-left: 3px solid var(--ds-info);
+}
+
+/* --- Countdown line ------------------------------------------------------
+
+   Rendered only for a timed toast. The drain animation is the timer itself
+   (dismissal fires on animationend), so `paused` freezes clock and line
+   together. Deliberately outside the reduced-motion block: a 2px width
+   change is not vestibular motion, and removing the animation would stop
+   timed toasts from closing. */
+.ds .dsx-toast-timer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  animation-name: dsx-toast-drain;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.ds .dsx-toast-timer.paused {
+  animation-play-state: paused;
+}
+
+@keyframes dsx-toast-drain {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+.ds .dsx-toast-timer.success {
+  background: var(--ds-success);
+}
+
+.ds .dsx-toast-timer.error {
+  background: var(--ds-error);
+}
+
+.ds .dsx-toast-timer.warning {
+  background: var(--ds-warning);
+}
+
+.ds .dsx-toast-timer.info {
+  background: var(--ds-info);
+}
+
+.ds .dsx-toast-body {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.ds .dsx-toast-title {
+  font-weight: 600;
+  color: var(--ds-text);
+}
+
+.ds .dsx-toast-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ds-text-2);
+  overflow-wrap: anywhere;
+}
+
+.ds .dsx-toast-action {
+  flex: none;
+  align-self: center;
+}
+
+.ds .dsx-toast-close {
+  flex: none;
+  color: var(--ds-text-3);
+}
+
+/* --- Confirm dialog ----------------------------------------------------- */
+
+.ds .dsx-confirm-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ds-text-2);
+}
+
+.ds .dsx-confirm-gate {
+  display: grid;
+  gap: 5px;
+  margin-top: 14px;
+}
+
+.ds .dsx-confirm-gate b {
+  font-family: var(--ds-font-mono);
+  color: var(--ds-text);
+}
+
+/* --- File preview ------------------------------------------------------- */
+
+.ds .dsx-preview {
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-surface);
+  overflow: hidden;
+}
+
+.ds .dsx-preview-bar {
+  display: flex;
+  /* Wrapping caps the bar's intrinsic minimum at its widest single child —
+     without it the nowrap filename plus both action buttons become the whole
+     panel's minimum width and push a narrow page sideways. */
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px 7px 12px;
+  background: var(--ds-surface-2);
+  border-bottom: 1px solid var(--ds-divider);
+  font-size: 12.5px;
+}
+
+.ds .dsx-preview-name {
+  /* min-width: 0 lets the nowrap name actually shrink and ellipsise — without
+     it the full filename is the bar's minimum width, and on a narrow screen
+     that minimum propagates up and pushes the whole page sideways. */
+  min-width: 0;
+  flex: 0 1 auto;
+  font-weight: 600;
+  color: var(--ds-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds .dsx-preview-size {
+  flex: none;
+  font-family: var(--ds-font-mono);
+  font-size: 11.5px;
+  color: var(--ds-text-3);
+}
+
+/* A checkerboard reads transparency in a PNG honestly, in both themes. */
+.ds .dsx-preview-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  background: repeating-conic-gradient(var(--ds-surface-3) 0% 25%, var(--ds-surface-2) 0% 50%) 50% /
+    18px 18px;
+}
+
+.ds .dsx-preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.ds .dsx-preview-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: var(--ds-surface);
+}
+
+.ds .dsx-preview-media {
+  max-width: 100%;
+}
+
+.ds .dsx-preview-text {
+  margin: 0;
+  align-self: stretch;
+  justify-self: stretch;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--ds-surface);
+  color: var(--ds-text);
+  font-family: var(--ds-font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ds .dsx-preview-center {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  background: var(--ds-surface);
+  width: 100%;
+  height: 100%;
+  align-content: center;
+}
+
+.ds .dsx-preview-notice {
+  color: var(--ds-text-3);
+}
+
+.ds .dsx-preview-notice b {
+  color: var(--ds-text);
+  font-size: 13px;
+}
+
+.ds .dsx-preview-notice p {
+  margin: 0;
+  max-width: 42ch;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* Thumbnail trigger: the image itself (or a file-type mark) as a small tile;
+   clicking it opens the preview modal. Drops into a table cell or a form. */
+.ds .dsx-preview-thumb {
+  display: grid;
+  place-items: center;
+  flex: none;
+  padding: 0;
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-surface-2);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.ds .dsx-preview-thumb:hover:not(:disabled),
+.ds .dsx-preview-thumb:focus-visible {
+  border-color: var(--ds-accent);
+  box-shadow: 0 0 0 2px var(--ds-focus);
+  outline: none;
+}
+
+.ds .dsx-preview-thumb:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.ds .dsx-preview-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ds .dsx-preview-thumb-kind {
+  display: grid;
+  place-items: center;
+  gap: 1px;
+  color: var(--ds-text-3);
+}
+
+.ds .dsx-preview-thumb-kind b {
+  font-family: var(--ds-font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ds-text-2);
+}
+
+/* The PDF mark reads as the familiar red "logo" — via the error token, not a hex. */
+.ds .dsx-preview-thumb-kind.pdf {
+  color: var(--ds-error);
+}
+
+.ds .dsx-preview-thumb-kind.pdf b {
+  color: var(--ds-error);
+}
+
+/* --- Date picker: Ensign's ds-cal as a form control (date-picker.tsx) ---- */
+/* The showcase draws its "compact picker for forms" with inline styles on the
+   ds-cal frame; these are those styles as tokens, plus the states a picker
+   needs that a month view does not (selected, in range, out of bounds). */
+
+.ds .dsx-date {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.ds .dsx-date-input {
+  padding-right: 34px;
+}
+
+.ds .dsx-date-btn {
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+}
+
+.ds .dsx-date-btn:disabled {
+  color: var(--ds-text-disabled);
+  cursor: not-allowed;
+}
+
+.ds .dsx-date-pop {
+  width: 100%;
+  box-shadow: var(--ds-shadow-floating);
+  user-select: none;
+}
+
+.ds .dsx-date-pop .ds-cal-head {
+  padding: 6px 6px 6px 12px;
+  font-size: 12.5px;
+}
+
+.ds .dsx-date-nav {
+  display: flex;
+  gap: 2px;
+}
+
+.ds .dsx-date-pop .ds-cal-grid .dow {
+  padding: 5px 0;
+}
+
+.ds .dsx-cal-week + .dsx-cal-week {
+  margin-top: 1px;
+}
+
+.ds .dsx-cal-day {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  display: grid;
+  place-items: center;
+  height: 34px;
+  padding: 0;
+  font-size: 12px;
+  color: var(--ds-text-2);
+  cursor: pointer;
+}
+
+.ds .dsx-cal-day .d {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.ds .dsx-cal-day:hover .d {
+  background: var(--ds-hover);
+  color: var(--ds-text);
+}
+
+.ds .dsx-cal-day.mute {
+  color: var(--ds-text-disabled);
+}
+
+.ds .dsx-cal-day.is-today .d {
+  background: var(--ds-primary-soft);
+  color: var(--ds-accent);
+  font-weight: 600;
+}
+
+.ds .dsx-cal-day.is-in-range {
+  background: var(--ds-primary-soft);
+}
+
+.ds .dsx-cal-day.is-selected .d {
+  background: var(--ds-primary);
+  color: var(--ds-on-primary);
+  font-weight: 700;
+}
+
+.ds .dsx-cal-day[aria-disabled='true'] {
+  color: var(--ds-text-disabled);
+  cursor: not-allowed;
+}
+
+.ds .dsx-cal-day[aria-disabled='true']:hover .d {
+  background: transparent;
+  color: inherit;
+}
+
+/* The ring goes on the day disc, not the cell — the cell has no border to sit on. */
+.ds .dsx-cal-day:focus-visible {
+  box-shadow: none;
+}
+
+.ds .dsx-cal-day:focus-visible .d {
+  box-shadow: 0 0 0 3px var(--ds-focus);
+}
+
+.ds .dsx-date-foot {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-top: 1px solid var(--ds-divider);
+}
+
+/* Range: two boxes with an arrow between; the boxes share the row equally. */
+.ds .dsx-daterange {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+}
+
+.ds .dsx-daterange-sep {
+  color: var(--ds-text-3);
+}
+
+/* --- File attachments: a record's stored documents (file-attachments.tsx) --- */
+/* Rows share the attachment-list vocabulary above; what is new is a preview
+   tile in place of the status icon and an action cluster at the end. */
+
+.ds .dsx-files-item {
+  gap: 10px;
+}
+
+.ds .dsx-files-item.busy {
+  opacity: 0.7;
+}
+
+.ds .dsx-files-thumb {
+  flex: none;
+}
+
+.ds .dsx-files-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+}
+
+.ds .dsx-files-actions .ds-btn.icon.sm {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+
+.ds .dsx-files-drop {
+  margin-bottom: 8px;
+}
+
+.ds .dsx-files-panel .ds-panel-body {
+  padding-top: 12px;
+}
+
+.ds .dsx-files-empty {
+  padding: 6px 2px;
+}
+
+.ds .dsx-files-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 2px;
+  color: var(--ds-text-3);
+  font-size: 12.5px;
+}
+
+.ds .dsx-files-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ds-text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Sheet: slides up from the bottom over a blurred page (sheet.tsx) ------ */
+/* Sits under the modal overlay (100) and the portalled popovers (120), so a
+   row editor, a confirm, a combobox list or a calendar opened from inside it
+   lands on top. The blur is on a sibling of the panel, never an ancestor: a
+   filter would become the containing block of the fixed dialogs inside. */
+
+.ds .dsx-sheet-root {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 32px 24px 0;
+}
+
+.ds .dsx-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--ds-overlay);
+  backdrop-filter: blur(6px) saturate(1.2);
+  -webkit-backdrop-filter: blur(6px) saturate(1.2);
+  animation: dsx-sheet-fade-in 240ms ease-out;
+}
+
+.ds .dsx-sheet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 960px;
+  max-height: 100%;
+  overflow: hidden;
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-bottom: none;
+  border-radius: calc(var(--ds-radius-lg) * 1.75) calc(var(--ds-radius-lg) * 1.75) 0 0;
+  box-shadow: var(--ds-shadow-modal);
+  outline: none;
+  /* The macOS sheet curve: quick off the mark, long soft landing. */
+  animation: dsx-sheet-in 440ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.ds .dsx-sheet.dsx-sheet-md {
+  max-width: 720px;
+}
+.ds .dsx-sheet.dsx-sheet-xl {
+  max-width: 1200px;
+}
+
+.ds .dsx-sheet-root.closing .dsx-sheet {
+  animation: dsx-sheet-out 260ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+.ds .dsx-sheet-root.closing .dsx-sheet-backdrop {
+  animation: dsx-sheet-fade-out 260ms ease-in forwards;
+}
+.ds .dsx-sheet-root.closing {
+  pointer-events: none;
+}
+
+.ds .dsx-sheet-head {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px 13px;
+  border-bottom: 1px solid var(--ds-divider);
+}
+.ds .dsx-sheet-heading {
+  flex: 1;
+  min-width: 0;
+}
+.ds .dsx-sheet-heading h4 {
+  font-family: var(--ds-font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ds-text);
+}
+.ds .dsx-sheet-heading p {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--ds-text-3);
+}
+
+/* A round close control, as on a macOS panel. */
+.ds .dsx-sheet-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--ds-surface-3);
+  color: var(--ds-text-2);
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+.ds .dsx-sheet-close:hover {
+  background: var(--ds-border);
+  color: var(--ds-text);
+}
+.ds .dsx-sheet-close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ds-focus);
+}
+
+.ds .dsx-sheet-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+/* Content that brings no padding of its own (a table) gets the sheet's gutter. */
+.ds .dsx-sheet-body.padded {
+  padding: 16px 20px;
+}
+
+/* Pinned under the header, outside the scroll: a save error stays in view. */
+.ds .dsx-sheet-banner {
+  flex: none;
+  padding: 12px 20px 0;
+}
+
+/* Form bands inside a sheet run tighter than on a page. */
+.ds .dsx-sheet-body .ds-form-section {
+  padding: 14px 20px;
+}
+.ds .dsx-sheet-body .ds-form-section .desc {
+  margin-bottom: 10px;
+}
+
+.ds .dsx-sheet-foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--ds-divider);
+  background: var(--ds-surface-2);
+}
+.ds .dsx-sheet-note {
+  margin-right: auto;
+  font-size: 12px;
+  color: var(--ds-text-3);
+}
+
+@keyframes dsx-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes dsx-sheet-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes dsx-sheet-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes dsx-sheet-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* On a phone the sheet is the full width and nearly the full height. */
+@media (max-width: 639.98px) {
+  .ds .dsx-sheet-root {
+    padding: 12px 0 0;
+  }
+  .ds .dsx-sheet {
+    border-left: none;
+    border-right: none;
+  }
+  .ds .dsx-sheet-head,
+  .ds .dsx-sheet-foot,
+  .ds .dsx-sheet-banner,
+  .ds .dsx-sheet-body.padded,
+  .ds .dsx-sheet-body .ds-form-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds .dsx-sheet,
+  .ds .dsx-sheet-backdrop {
+    animation: none;
+  }
+  .ds .dsx-sheet-root.closing {
+    opacity: 0;
+  }
+}

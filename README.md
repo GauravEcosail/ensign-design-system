@@ -37,6 +37,7 @@ src/
   showcase/
     themes.css       ← the token contract (the design system itself)
     showcase.css     ← token-driven component styles
+    kernel.css       ← CVMS platform primitives (DataTable, Sheet, Combobox, DateInput, …), copied from CVMS kernel/src/frontend/ui/kernel.css with the @custom-media breakpoints inlined
     Showcase.jsx     ← page composition + section index
     Foundations.jsx  ← §1–4  theme, color, typography, icons
     Controls.jsx     ← §5–8  buttons, inputs, navigation, cards
